@@ -1,0 +1,26 @@
+# If local.py is present, any settings in it will override those in base.py and dev.py.
+# Use this for any settings that are specific to this one installation, such as developer API keys.
+# local.py should not be checked in to version control.
+
+# Rename this as local.py
+
+from .base import *
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'coosta',
+        'USER': 'coosta',
+        'PASSWORD': 'coosta',
+        'HOST': '',  # Set to empty string for localhost.
+        'PORT': '',  # Set to empty string for default.
+        'CONN_MAX_AGE': 600,  # number of seconds database connections should persist for
+    }
+}
+
+MIDDLEWARE_CLASSES = [
+    'lockdown.middleware.LockdownMiddleware',
+]
+
+
+LOCKDOWN_PASSWORDS = ('LetmegoIn@123', 'AllowmeIn@123')
